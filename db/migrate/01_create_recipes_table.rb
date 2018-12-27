@@ -1,4 +1,4 @@
-class CreateRecipesTable
+class CreateRecipesTable < ActiveRecord::Migrations
   def change
     create_table :recipes do |t|
       t.string :name
