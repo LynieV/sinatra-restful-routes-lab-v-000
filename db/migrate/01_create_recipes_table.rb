@@ -4,5 +4,6 @@ class CreateRecipesTable
       t.string :name
       t.string :ingredients
       t.float :cook_time
+    end
   end
 end
