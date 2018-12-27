@@ -16,12 +16,12 @@ class ApplicationController < Sinatra::Base
   get '/recipes/:id' do #show the recipe
     @recipe = Recipe.find_by_id(params[:id])
     erb :show
-  end 
+  end
 
   get '/recipes/:id/edit' do #load edit form
     @recipe = Recipe.find_by_id(params[:id])
     erb :edit
-  end 
+  end
 
   patch '/recipes/:id' do #edits the recipe
     @recipe = Recipe.find_by_id(params[:id])
