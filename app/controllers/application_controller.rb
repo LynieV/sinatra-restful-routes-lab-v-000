@@ -1,49 +1,49 @@
 class ApplicationController < Sinatra::Base
-  configure do
-    set :public_folder, 'public'
-    set :views, 'app/views'
-  end
+ configure do
+   set :public_folder, ‘public’
+   set :views, ‘app/views’
+ end
 
-  get ‘/recipes/new’ do #form to create the recipe
+ get ‘/recipes/new’ do #form to create the recipe
    erb :new
-  end
+ end
 
-  get ‘/recipes’ do
+ get ‘/recipes’ do
    @recipes = Recipe.all
    erb :index
-  end
+ end
 
-  get ‘/recipes/:id’ do #show the recipe
+ get ‘/recipes/:id’ do #show the recipe
    @recipe = Recipe.find_by_id(params[:id])
    erb :show
-  end
+ end
 
-  get ‘/recipes/:id/edit’ do #load edit form
+ get ‘/recipes/:id/edit’ do #load edit form
    @recipe = Recipe.find_by_id(params[:id])
    erb :edit
-  end
+ end
 
-  patch ‘/recipes/:id’ do #edits the recipe
+ patch ‘/recipes/:id’ do #edits the recipe
    @recipe = Recipe.find_by_id(params[:id])
    @recipe.name = params[:name]
    @recipe.ingredients = params[:ingredients]
    @recipe.cook_time = params[:cook_time]
    @recipe.save
    redirect to “/recipes/#{@recipe.id}”
-  end
+ end
 
-  post ‘/recipes’ do #create and save the recipe
+ post ‘/recipes’ do #create and save the recipe
    @recipe = Recipe.create(:name => params[:name], :ingredients => params[:ingredients], :cook_time => params[:cook_time])
    redirect to “/recipes/#{@recipe.id}”
-  end
+ end
 
  # put ‘/recipes/:id’ do #replaces the recipe
  # end
 
-  delete ‘/recipes/:id’ do #deletes the recipe
+ delete ‘/recipes/:id’ do #deletes the recipe
    @recipe = Recipe.find_by_id(params[:id])
    @recipe.delete
    redirect to ‘/recipes’
-  end
-
  end
+
+end
