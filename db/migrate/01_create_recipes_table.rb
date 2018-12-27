@@ -3,6 +3,6 @@ class CreateRecipesTable
     create_table :recipes do |t|
       t.string :name
       t.string :ingredients
-      t.float : cook_time
+      t.float :cook_time
   end
 end
